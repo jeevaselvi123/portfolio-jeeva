@@ -1,13 +1,15 @@
 import Header from '../src/components/Header'
 import Navbar from '../src/components/Navbar'
 
-export default function Home() {
+const About = () => {
   return (
     <>
       <Header />
       <Navbar />
 
-      <div></div>
+      <div>About</div>
     </>
   )
 }
+
+export default About
