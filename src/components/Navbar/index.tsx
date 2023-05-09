@@ -13,6 +13,8 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
+  useScrollTrigger,
+  Slide,
 } from '@mui/material'
 import AdbIcon from '@mui/icons-material/Adb'
 import { NavBarProps } from '../../lib/interfaces'
@@ -20,6 +22,18 @@ import MenuIcon from '@mui/icons-material/Menu'
 import { useRouter } from 'next/router'
 import { NAV_ITEMS } from 'src/lib/constants'
 import { useActivePath } from 'src/contexts/activeLink'
+
+const HideOnScroll = ({ window, children }: NavBarProps) => {
+  const trigger = useScrollTrigger({
+    target: window ? window() : undefined,
+  })
+
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children}
+    </Slide>
+  )
+}
 
 const Navbar = (props: NavBarProps) => {
   const { window } = props
@@ -43,48 +57,51 @@ const Navbar = (props: NavBarProps) => {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar component="nav" sx={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
-        <Toolbar sx={{ mx: { xs: 0, sm: 12 } }}>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <AdbIcon
-            onClick={() => handlePageRouteClick('/')}
-            sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, cursor: 'pointer' }}
-          />
-          <Typography
-            onClick={() => handlePageRouteClick('/')}
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, userSelect: 'none', cursor: 'pointer' }}
-          >
-            Portfolio
-          </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {NAV_ITEMS.map(({ label, path }, index) => (
-              <Button
-                key={index}
-                sx={{
-                  color: '#fff',
-                  borderBottomColor: '#fff',
-                  borderBottomWidth: '3px',
-                  borderBottomStyle: activePath === label ? 'solid' : '',
-                  borderRadius: '0px',
-                }}
-                onClick={() => handlePageRouteClick(path)}
-              >
-                {label}
-              </Button>
-            ))}
-          </Box>
-        </Toolbar>
-      </AppBar>
+      <HideOnScroll {...props}>
+        <AppBar component="nav" sx={{ backgroundColor: 'transparent', boxShadow: 'none' }}>
+          <Toolbar sx={{ mx: { xs: 0, sm: 12 } }}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, display: { sm: 'none' } }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <AdbIcon
+              onClick={() => handlePageRouteClick('/')}
+              sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, cursor: 'pointer' }}
+            />
+            <Typography
+              onClick={() => handlePageRouteClick('/')}
+              variant="h6"
+              component="div"
+              sx={{ flexGrow: 1, userSelect: 'none', cursor: 'pointer' }}
+            >
+              Portfolio
+            </Typography>
+            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+              {NAV_ITEMS.map(({ label, path }, index) => (
+                <Button
+                  key={index}
+                  sx={{
+                    color: '#fff',
+                    borderBottomColor: '#fff',
+                    borderBottomWidth: '3px',
+                    borderBottomStyle: activePath === label ? 'solid' : '',
+                    borderRadius: '0px',
+                  }}
+                  onClick={() => handlePageRouteClick(path)}
+                >
+                  {label}
+                </Button>
+              ))}
+            </Box>
+          </Toolbar>
+        </AppBar>
+      </HideOnScroll>
+
       <Box component="nav">
         <Drawer
           container={container}

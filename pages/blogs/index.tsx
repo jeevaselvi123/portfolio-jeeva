@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
-import Header from 'src/components/Header'
-import Navbar from 'src/components/Navbar'
+import Cards from 'src/components/Cards'
 import { useActivePath } from 'src/contexts/activeLink'
 
 const Blogs = () => {
@@ -10,15 +9,10 @@ const Blogs = () => {
     setActivePath('Blog')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  
-  return (
-    <>
-      <Header />
-      <Navbar />
 
-      <div style={{marginTop: '5%'}}>Blogs</div>
-    </>
-  )
+  return <div style={{ marginTop: '70px' }}>
+    <Cards />
+  </div>
 }
 
 export default Blogs

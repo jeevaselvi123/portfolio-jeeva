@@ -13,9 +13,6 @@ const Experience = () => {
 
   return (
     <>
-      <Header />
-      <Navbar />
-
       <div style={{marginTop: '5%'}}>Experience</div>
     </>
   )

@@ -30,8 +30,6 @@ const Home = () => {
   }, [])
   return (
     <>
-      <Header />
-      <Navbar />
       <CardMedia
         sx={{ userSelect: 'none', height: '100vh', opacity: '0.6', pointerEvents: 'none' }}
         component="img"

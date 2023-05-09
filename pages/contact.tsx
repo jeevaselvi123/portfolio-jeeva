@@ -13,9 +13,6 @@ const Contact = () => {
 
   return (
     <>
-      <Header />
-      <Navbar />
-
       <div style={{marginTop: '5%'}}>Contact</div>
     </>
   )

@@ -2,6 +2,7 @@ import { Dispatch, ReactNode, SetStateAction } from 'react'
 
 export interface NavBarProps {
   window?: () => Window
+  children: React.ReactElement
 }
 
 export interface NavItemsType {
@@ -9,7 +10,7 @@ export interface NavItemsType {
   path: string
 }
 
-export interface ActivePathProviderType {
+export interface ChildNodePropType {
   children: ReactNode
 }
 

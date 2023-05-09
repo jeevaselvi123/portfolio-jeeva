@@ -6,7 +6,7 @@ import { useActivePath } from 'src/contexts/activeLink'
 
 const Blog = () => {
   const router = useRouter()
-  
+
   const { setActivePath } = useActivePath()
 
   useEffect(() => {
@@ -16,9 +16,6 @@ const Blog = () => {
 
   return (
     <>
-      <Header />
-      <Navbar />
-
       <div style={{ marginTop: '5%' }}>Blog: {router.query.blogId}</div>
     </>
   )
