@@ -17,11 +17,17 @@ import {
 import AdbIcon from '@mui/icons-material/Adb'
 import { NavBarProps } from '../../lib/interfaces'
 import MenuIcon from '@mui/icons-material/Menu'
+import { useRouter } from 'next/router'
+import { NAV_ITEMS } from 'src/lib/constants'
+import { useActivePath } from 'src/contexts/activeLink'
 
 const Navbar = (props: NavBarProps) => {
   const { window } = props
-  const drawerWidth = 240
-  const navItems: Array<string> = ['Home', 'About', 'Blog', 'Experience', 'Contact']
+
+  const router = useRouter()
+
+  const { activePath } = useActivePath()
+
   const [mobileOpen, setMobileOpen] = useState<boolean>(false)
 
   const handleDrawerToggle = () => {
@@ -29,6 +35,10 @@ const Navbar = (props: NavBarProps) => {
   }
 
   const container = window !== undefined ? () => window().document.body : undefined
+
+  const handlePageRouteClick = (path: string) => {
+    router.push(path)
+  }
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -44,14 +54,32 @@ const Navbar = (props: NavBarProps) => {
           >
             <MenuIcon />
           </IconButton>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <AdbIcon
+            onClick={() => handlePageRouteClick('/')}
+            sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, cursor: 'pointer' }}
+          />
+          <Typography
+            onClick={() => handlePageRouteClick('/')}
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, userSelect: 'none', cursor: 'pointer' }}
+          >
             Portfolio
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
-                {item}
+            {NAV_ITEMS.map(({ label, path }, index) => (
+              <Button
+                key={index}
+                sx={{
+                  color: '#fff',
+                  borderBottomColor: '#fff',
+                  borderBottomWidth: '3px',
+                  borderBottomStyle: activePath === label ? 'solid' : '',
+                  borderRadius: '0px',
+                }}
+                onClick={() => handlePageRouteClick(path)}
+              >
+                {label}
               </Button>
             ))}
           </Box>
@@ -68,7 +96,7 @@ const Navbar = (props: NavBarProps) => {
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 },
           }}
         >
           <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
@@ -77,10 +105,10 @@ const Navbar = (props: NavBarProps) => {
             </Typography>
             <Divider />
             <List>
-              {navItems.map((item) => (
-                <ListItem key={item} disablePadding>
-                  <ListItemButton sx={{ textAlign: 'center' }}>
-                    <ListItemText primary={item} />
+              {NAV_ITEMS.map(({ label, path }, index) => (
+                <ListItem key={index} disablePadding>
+                  <ListItemButton sx={{ textAlign: 'center' }} onClick={() => handlePageRouteClick(path)}>
+                    <ListItemText primary={label} />
                   </ListItemButton>
                 </ListItem>
               ))}

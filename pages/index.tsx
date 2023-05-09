@@ -3,9 +3,16 @@ import { Typography, CardMedia } from '@mui/material'
 import Typed from 'typed.js'
 import Header from '../src/components/Header'
 import Navbar from '../src/components/Navbar'
+import { useActivePath } from 'src/contexts/activeLink'
 
-export default function Home() {
+const Home = () => {
   const ref = useRef(null)
+  const { setActivePath } = useActivePath()
+
+  useEffect(() => {
+    setActivePath('Home')
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     const typed = new Typed(ref.current, {
@@ -13,7 +20,7 @@ export default function Home() {
       startDelay: 300,
       typeSpeed: 100,
       backSpeed: 100,
-      backDelay: 100,
+      backDelay: 1000,
       loop: true,
     })
 
@@ -26,19 +33,31 @@ export default function Home() {
       <Header />
       <Navbar />
       <CardMedia
-        sx={{ userSelect: 'none', height: '100vh', opacity: '0.6' }}
+        sx={{ userSelect: 'none', height: '100vh', opacity: '0.6', pointerEvents: 'none' }}
         component="img"
         image={'/bala.jpg'}
         alt="Developer Img"
       />
       <div style={{ position: 'absolute', color: 'white', top: '60%', left: '50%', transform: 'translateX(-50%)' }}>
-        <Typography fontSize="5rem" align="center" gutterBottom>
-          I am Bala
+        <Typography
+          variant="h1"
+          align="center"
+          gutterBottom
+          sx={{ userSelect: 'none', fontSize: { sm: '4rem', xs: '2rem' } }}
+        >
+          Hi... I am Bala
         </Typography>
-        <div style={{ textAlign: 'center' }}>
-          <span style={{ fontSize: '2rem' }} ref={ref}></span>
-        </div>
+        <Typography
+          variant="subtitle1"
+          align="center"
+          gutterBottom
+          sx={{ userSelect: 'none', fontSize: { sm: '1.5rem', xs: '1rem' } }}
+        >
+          I am a <span ref={ref}></span>
+        </Typography>
       </div>
     </>
   )
 }
+
+export default Home

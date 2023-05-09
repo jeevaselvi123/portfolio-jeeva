@@ -2,26 +2,23 @@ import { useEffect } from 'react'
 import Header from 'src/components/Header'
 import Navbar from 'src/components/Navbar'
 import { useActivePath } from 'src/contexts/activeLink'
-import { Card } from '@mui/material'
 
-const About = () => {
+const Blogs = () => {
   const { setActivePath } = useActivePath()
 
   useEffect(() => {
-    setActivePath('About')
+    setActivePath('Blog')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
+  
   return (
     <>
       <Header />
       <Navbar />
 
-      <div style={{ marginTop: '5%' }}>
-        <Card sx={{margin: '50px', padding: '50px', height: '80vh'}}>hello</Card>
-      </div>
+      <div style={{marginTop: '5%'}}>Blogs</div>
     </>
   )
 }
 
-export default About
+export default Blogs
