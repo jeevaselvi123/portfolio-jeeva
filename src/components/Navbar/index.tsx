@@ -30,7 +30,7 @@ const HideOnScroll = ({ window, children }: NavBarProps) => {
 
   return (
     <Slide appear={false} direction="down" in={!trigger}>
-      {children}
+      {children ?? <></>}
     </Slide>
   )
 }

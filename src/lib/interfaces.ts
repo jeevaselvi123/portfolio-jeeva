@@ -2,7 +2,7 @@ import { Dispatch, ReactNode, SetStateAction } from 'react'
 
 export interface NavBarProps {
   window?: () => Window
-  children: React.ReactElement
+  children?: React.ReactElement
 }
 
 export interface NavItemsType {
