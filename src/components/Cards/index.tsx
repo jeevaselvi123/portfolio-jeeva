@@ -10,14 +10,15 @@ import {
   Link,
   CardActionArea,
 } from '@mui/material'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 const Cards = () => {
   const router = useRouter()
+
   const handleBlogPageRoute = () => {
     router.push('/blogs/1')
   }
+
   return (
     <Grid item>
       <Card sx={{ maxWidth: 325 }}>
@@ -33,7 +34,19 @@ const Cards = () => {
 
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            <Link onClick={handleBlogPageRoute} underline="none" sx={{ userSelect: 'none', cursor: 'pointer' }}>
+            <Link
+              onClick={handleBlogPageRoute}
+              underline="none"
+              sx={{
+                userSelect: 'none',
+                cursor: 'pointer',
+                color: 'black',
+                transition: 'all 0.5s ease-in-out',
+                '&:hover': {
+                  color: '#0d6efd',
+                },
+              }}
+            >
               Blog Page name
             </Link>
           </Typography>

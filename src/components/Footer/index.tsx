@@ -3,10 +3,10 @@ import { Typography } from '@mui/material'
 
 const Footer = () => {
   return (
-    <Typography color="#fff" variant="body1" textAlign="center" marginTop={2} marginBottom={2} bottom="0px">
+    <Typography color="#fff" textAlign="center" marginTop={1} marginBottom={1} >
       Copyright &copy; {new Date().getFullYear()} | Made with&nbsp;
       <FavoriteOutlinedIcon sx={{ width: '16px', height: '16px', fill: '#f43f5e' }} />
-      &nbsp; by Bala
+      &nbsp;by Bala
     </Typography>
   )
 }

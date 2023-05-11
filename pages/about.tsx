@@ -19,7 +19,7 @@ const About = () => {
   <div><h3> Hi ! </h3>
   <p>I'm Balasubramani Ravindran - Full stack web developer and Python developer in India</p>
   <p>Leading an exploring lifestyle is a personal goal. Always dreams big.</p>
-  <p>After schooling, I have done my graduation in computer science and engineeering. At that time used to visit many colleges in different cities to get exposure and more towards exploring the other cities. Love to travel.</p>
+  <p>After schooling, I have done my graduation in computer science and engineering. At that time used to visit many colleges in different cities to get exposure and more towards exploring the other cities. Love to travel.</p>
   <p>Apart from curriculum, I play cricket and volleyball. Not a great player but like to spend some time apart from studies and enjoy the game.</p>
   <p>I gained more interest towards the computers in my pre-final year. Then I learned Web Development and played with some funny projects. </p>
   <p>After graduation, I have entered into Lightcast, worked on Web Apps using ReactJs, NextJs and, backend using Python and, Express NodeJs.</p>
@@ -31,9 +31,8 @@ const About = () => {
       <div style={{ marginTop: '70px' }}>
         <Paper
           sx={{
-            p: { sm: 5, xs: 2 },
+            p: { sm: 2.5, xs: 2 },
             marginX: { sm: '50px', xs: '15px' },
-            backgroundColor: 'rgba(255, 255, 255, 0.65)',
           }}
         >
           <Grid container spacing={2}>
