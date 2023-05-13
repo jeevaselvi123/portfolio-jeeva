@@ -3,7 +3,6 @@ import Header from '../Header'
 import { ChildNodePropType } from 'src/lib/interfaces'
 import Navbar from '../Navbar'
 import { useActivePath } from 'src/contexts/activeLink'
-import { useEffect } from 'react'
 
 export default function Layout({ children }: ChildNodePropType) {
   const { activePath } = useActivePath()

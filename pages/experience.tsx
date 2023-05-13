@@ -13,7 +13,7 @@ const Experience = () => {
 
   return (
     <>
-      <div style={{marginTop: '5%'}}>Experience</div>
+      <div style={{marginTop: '5%', height: '100%'}}>Experience</div>
     </>
   )
 }

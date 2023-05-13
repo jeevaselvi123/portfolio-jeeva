@@ -11,12 +11,13 @@ import {
   CardActionArea,
 } from '@mui/material'
 import { useRouter } from 'next/router'
+import { BlogCardType } from 'src/lib/interfaces'
 
-const Cards = () => {
+const Cards = ({ blogData }: BlogCardType) => {
   const router = useRouter()
 
   const handleBlogPageRoute = () => {
-    router.push('/blogs/1')
+    router.push(`/blogs/${blogData._id}`)
   }
 
   return (
@@ -26,8 +27,8 @@ const Cards = () => {
           <CardMedia
             component="img"
             height="200"
-            image="/bala.jpg"
-            alt="Blog Writter"
+            image={blogData.logo}
+            alt="Blog Writer"
             style={{ userSelect: 'none', pointerEvents: 'none' }}
           />
         </CardActionArea>
@@ -47,19 +48,20 @@ const Cards = () => {
                 },
               }}
             >
-              Blog Page name
+              {blogData.heading}
             </Link>
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents
-            except Antarctica
+            {blogData.desc}
           </Typography>
         </CardContent>
         <Divider />
         <CardHeader
-          avatar={<Avatar alt="Blog Writer" src="/bala.jpg" sx={{ userSelect: 'none', pointerEvents: 'none' }} />}
-          title="Shrimp and Chorizo Paella"
-          subheader="September 14, 2016"
+          avatar={
+            <Avatar alt="Blog Writer" src={blogData.authorImg} sx={{ userSelect: 'none', pointerEvents: 'none' }} />
+          }
+          title={blogData.author}
+          subheader={blogData.writtenOn}
         />
       </Card>
     </Grid>
