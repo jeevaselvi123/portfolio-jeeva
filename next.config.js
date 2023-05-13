@@ -3,7 +3,7 @@ const dotenv = require('dotenv')
 
 const nextConfig = {
   reactStrictMode: true,
-  env: dotenv.config().parsed,
+  env: process.env.IS_DEPLOYED === 'true' ? undefined : dotenv.config().parsed,
 }
 
 module.exports = nextConfig
