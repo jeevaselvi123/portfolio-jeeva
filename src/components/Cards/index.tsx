@@ -11,10 +11,15 @@ import {
   CardActionArea,
 } from '@mui/material'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 import { BlogCardType } from 'src/lib/interfaces'
+import Skeletons from '../Skeletons'
 
 const Cards = ({ blogData }: BlogCardType) => {
   const router = useRouter()
+
+  const [cardImage, setCardImgSrc] = useState<string>(blogData.logo.length > 0 ? blogData.logo : '/blog.jpg')
+  const [isCardImageLoaded, setIsCardImageLoaded] = useState<boolean>(false)
 
   const handleBlogPageRoute = () => {
     router.push(`/blogs/${blogData._id}`)
@@ -22,14 +27,22 @@ const Cards = ({ blogData }: BlogCardType) => {
 
   return (
     <Grid item>
-      <Card sx={{ maxWidth: 325 }}>
+      <Card sx={{ width: 325 }}>
         <CardActionArea onClick={handleBlogPageRoute} disableRipple>
+          {!isCardImageLoaded && <Skeletons type="blogCardImage" />}
           <CardMedia
             component="img"
             height="200"
-            image={blogData.logo}
+            image={cardImage}
             alt="Blog Writer"
-            style={{ userSelect: 'none', pointerEvents: 'none' }}
+            style={{ userSelect: 'none', pointerEvents: 'none', display: isCardImageLoaded ? 'block' : 'none' }}
+            onLoad={() => {
+              setIsCardImageLoaded(true)
+            }}
+            onError={() => {
+              setCardImgSrc('/blog.jpg')
+              setIsCardImageLoaded(true)
+            }}
           />
         </CardActionArea>
 

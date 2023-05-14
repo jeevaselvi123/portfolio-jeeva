@@ -68,3 +68,20 @@ export interface BlogType {
   authorImg: string
   writtenOn: string
 }
+
+export interface ExperienceType {
+  _id: string
+  infoId: string
+  companyName: string
+  companyLogo: string
+  from: string
+  to: string
+  designation: string
+}
+
+export interface WorkType {
+  _id: string
+  infoId: string
+  heading: string
+  description: string
+}

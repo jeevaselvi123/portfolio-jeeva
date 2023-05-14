@@ -4,13 +4,15 @@ import { Grid, IconButton, Paper, Typography } from '@mui/material'
 import Image from 'next/image'
 import { useInfoGetById } from 'src/lib/apiHelpers'
 import { InfoType, SocialMediaType } from 'src/lib/interfaces'
-import Skeletons from 'src/components/Skeleton'
+import Skeletons from 'src/components/Skeletons'
 import SocialMediaIcon from 'src/components/SocialMediaIcon'
 
 const About = () => {
   const { setActivePath } = useActivePath()
 
   const [info, setInfo] = useState<InfoType | null>(null)
+  const [aboutImg, setAboutImgSrc] = useState<string>('')
+  const [isAboutImgLoaded, setIsAboutImgLoaded] = useState<boolean>(false)
 
   const { data: infoData, isLoading: isInfoLoading } = useInfoGetById(`${process.env.PORTFOLIO_INFO_ID}` || '')
 
@@ -23,6 +25,7 @@ const About = () => {
     if (!isInfoLoading) {
       const res = infoData as InfoType
       setInfo(res)
+      setAboutImgSrc(res.aboutImg)
     }
   }, [isInfoLoading, infoData])
 
@@ -43,11 +46,23 @@ const About = () => {
                 ) : (
                   <Image
                     alt="Developer Img"
-                    src="/bala.jpg"
+                    src={aboutImg && aboutImg.length > 0 ? aboutImg : '/profile.png'}
                     width={250}
                     height={250}
                     priority={true}
-                    style={{ userSelect: 'none', pointerEvents: 'none', borderRadius: '10px' }}
+                    style={{
+                      userSelect: 'none',
+                      pointerEvents: 'none',
+                      borderRadius: '10px',
+                      display: isAboutImgLoaded ? 'block' : 'none',
+                    }}
+                    onLoad={() => {
+                      setIsAboutImgLoaded(true)
+                    }}
+                    onError={() => {
+                      setAboutImgSrc('/profile.png')
+                      setIsAboutImgLoaded(true)
+                    }}
                   />
                 )}
               </Grid>
@@ -95,7 +110,7 @@ const About = () => {
                       })
                     : info?.socialMedias.map((val: SocialMediaType, ind: number) => {
                         return (
-                          <a key={ind} target="_blank" href={val.url} rel="noopener noreferrer">
+                          <a key={ind} href={val.url} target="_blank" rel="noopener noreferrer">
                             <IconButton>{SocialMediaIcon(val.name)}</IconButton>
                           </a>
                         )

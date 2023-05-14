@@ -32,3 +32,23 @@ export const useBlogGetById = (id: string) => {
     isLoading: !data && !error,
   }
 }
+
+export const useExperiencesGetById = (id: string) => {
+  const { data, error } = useSWR(`${process.env.PORTFOLIO_API_URL}/experience/user/${id}`, getByIdFetcher)
+
+  return {
+    data,
+    error,
+    isLoading: !data && !error,
+  }
+}
+
+export const useWorksGetById = (id: string) => {
+  const { data, error } = useSWR(`${process.env.PORTFOLIO_API_URL}/works/user/${id}`, getByIdFetcher)
+
+  return {
+    data,
+    error,
+    isLoading: !data && !error,
+  }
+}

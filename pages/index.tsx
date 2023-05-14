@@ -4,7 +4,7 @@ import Typed from 'typed.js'
 import { useActivePath } from 'src/contexts/activeLink'
 import { useInfoGetById } from 'src/lib/apiHelpers'
 import { InfoType } from 'src/lib/interfaces'
-import Skeletons from 'src/components/Skeleton'
+import Skeletons from 'src/components/Skeletons'
 
 const Home = () => {
   const ref = useRef(null)

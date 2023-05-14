@@ -6,7 +6,7 @@ import PhoneAndroidOutlinedIcon from '@mui/icons-material/PhoneAndroidOutlined'
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined'
 import { InfoType, SocialMediaType } from 'src/lib/interfaces'
 import { useInfoGetById } from 'src/lib/apiHelpers'
-import Skeletons from 'src/components/Skeleton'
+import Skeletons from 'src/components/Skeletons'
 import SocialMediaIcon from 'src/components/SocialMediaIcon'
 
 const Contact = () => {

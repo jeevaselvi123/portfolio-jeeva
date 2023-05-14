@@ -1,7 +1,7 @@
 import { Box, Grid } from '@mui/material'
 import { useEffect, useState } from 'react'
 import Cards from 'src/components/Cards'
-import Skeletons from 'src/components/Skeleton'
+import Skeletons from 'src/components/Skeletons'
 import { useActivePath } from 'src/contexts/activeLink'
 import { useBlogsGetByInfoId } from 'src/lib/apiHelpers'
 import { BlogType } from 'src/lib/interfaces'
