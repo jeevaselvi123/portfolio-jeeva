@@ -131,19 +131,20 @@ const Experience = () => {
           ) : (
             <Grid container item direction="row" columns={24} justifyContent="center">
               {skills.map((skillRes: SkillCertificationType, ind: number) => (
-                <Grid item key={ind} md={6} xs={12} justifyContent="center">
-                  <Typography align="center" color="#fff">
+                <Grid item key={ind} sx={{ padding: 2 }} md={6} xs={12} justifyContent="center">
+                  <Typography sx={{ padding: 1 }} align="center" color="#fff">
                     {skillRes.name}
                   </Typography>
                   <Image
                     src={skillRes.logo}
                     alt="Skill Sets"
                     loading="lazy"
-                    width={150}
-                    height={150}
+                    width={120}
+                    height={120}
                     style={{
                       margin: 'auto',
                       display: 'block',
+                      borderRadius: '60%',
                     }}
                   />
                 </Grid>

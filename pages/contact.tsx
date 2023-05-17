@@ -8,13 +8,18 @@ import { InfoType, SocialMediaType } from 'src/lib/interfaces'
 import { useInfoGetById } from 'src/lib/apiHelpers'
 import Skeletons from 'src/components/Skeletons'
 import SocialMediaIcon from 'src/components/SocialMediaIcon'
+// import SendEmail from 'src/lib/sendEmail'
 
 const Contact = () => {
   const { setActivePath } = useActivePath()
 
   const [info, setInfo] = useState<InfoType | null>(null)
-
   const { data: infoData, isLoading: isInfoLoading } = useInfoGetById(`${process.env.PORTFOLIO_INFO_ID}` || '')
+
+  const [sendName, setSendName] = useState<string>('')
+  const [sendEmail, setSendEmail] = useState<string>('')
+  const [sendSub, setSendSub] = useState<string>('')
+  const [sendMes, setSendMes] = useState<string>('')
 
   useEffect(() => {
     setActivePath('Contact')
@@ -27,6 +32,15 @@ const Contact = () => {
       setInfo(res)
     }
   }, [isInfoLoading, infoData])
+
+  const handleEmailSend = () => {
+    console.log(sendName)
+    console.log(sendEmail)
+    console.log(sendSub)
+    console.log(sendMes)
+
+    // SendEmail(sendName, sendEmail, sendSub, sendMes)
+  }
 
   return (
     <>
@@ -46,15 +60,44 @@ const Contact = () => {
                 </Typography>
               </Grid>
               <Grid container item direction="column" alignItems="center">
-                <TextField label="Your Name" variant="outlined" sx={{ marginY: 1 }} fullWidth />
+                <TextField
+                  label="Your Name"
+                  variant="outlined"
+                  sx={{ marginY: 1 }}
+                  fullWidth
+                  onChange={(e) => setSendName(e.target.value)}
+                />
 
-                <TextField label="Your Email" variant="outlined" sx={{ marginY: 1 }} fullWidth />
+                <TextField
+                  label="Your Email"
+                  variant="outlined"
+                  sx={{ marginY: 1 }}
+                  fullWidth
+                  onChange={(e) => setSendEmail(e.target.value)}
+                />
 
-                <TextField label="Subject" variant="outlined" sx={{ marginY: 1 }} fullWidth />
+                <TextField
+                  label="Subject"
+                  variant="outlined"
+                  sx={{ marginY: 1 }}
+                  fullWidth
+                  onChange={(e) => setSendSub(e.target.value)}
+                />
 
-                <TextField label="Message" multiline rows={5} sx={{ marginY: 1 }} fullWidth />
+                <TextField
+                  label="Message"
+                  multiline
+                  rows={5}
+                  sx={{ marginY: 1 }}
+                  fullWidth
+                  onChange={(e) => setSendMes(e.target.value)}
+                />
 
-                <Button variant="contained" sx={{ padding: 1.5, width: '50%', marginTop: 4, borderRadius: '50px' }}>
+                <Button
+                  onClick={handleEmailSend}
+                  variant="contained"
+                  sx={{ padding: 1.5, width: '50%', marginTop: 4, borderRadius: '50px' }}
+                >
                   Send Message
                 </Button>
               </Grid>

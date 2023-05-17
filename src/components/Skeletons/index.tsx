@@ -74,6 +74,7 @@ const Skeletons = ({ type }: SkeletonType) => {
           ))}
         </Grid>
       )}
+      {type === 'blogContent' && [1, 2, 3, 5].map((v, i) => <Skeleton key={v} variant="text" sx={{ margin: 3 }} />)}
     </>
   )
 }
